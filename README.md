@@ -16,6 +16,7 @@ Can be found here: https://cloud.digitalocean.com/account/security
 
 ### Define your workspace
 ```terraform workspace new dev/prod
+terraform workspace new <env>
 terraform get
 ```
 ### Plan and apply
