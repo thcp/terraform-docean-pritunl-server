@@ -17,15 +17,15 @@ Update `config.auto.tfvars` with your settings, relevant details can be found he
 - https://cloud.digitalocean.com/account/security
 
 
-## Credential file
+### Credential file
 copy `secret.tvars.sample` to `secret.auto.tvars` and add your API Token/ssh fingerprint
 
-## Define your workspace
+### Define your workspace
 ```terraform workspace new dev/prod
 terraform workspace new <env>
 terraform get
 ```
-## Plan and apply
+### Plan and apply
 ```
 terraform plan
 terraform apply
