@@ -5,7 +5,7 @@ Terraform script to provision CentOS 7 Droplet on digital Ocean and install Prit
 # Usage
 
 
-Update `main.tf` vars with your settings relevant details can be found here:
+Update `config.tfvars` with your settings, relevant details can be found here:
 
 ### Size
 - https://developers.digitalocean.com/documentation/changelog/api-v2/new-size-slugs-for-droplet-plan-changes/
