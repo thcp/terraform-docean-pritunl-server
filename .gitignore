@@ -1,3 +1,4 @@
 .terraform/
 .test-data/
 *.tfstate*
+secret.tfvars
