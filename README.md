@@ -19,6 +19,7 @@ Update `main.tf` vars with your settings relevant details can be found here:
 
 ## Credential file
 copy `secret.tvars.sample` to `secret.tvars` and add your API Token/ssh fingerprint
+
 ## Define your workspace
 ```terraform workspace new dev/prod
 terraform workspace new <env>
