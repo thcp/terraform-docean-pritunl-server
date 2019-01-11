@@ -14,9 +14,7 @@ PUBLIC_IP=$(ip addr show eth0 | grep "inet\b" | awk '{print $2}' | cut -f1 -d'/'
 PRIVATE_IP=$(ip addr show eth1 | grep "inet\b" | awk '{print $2}' | cut -f1 -d'/')
 
 echo "PRIV_IP=$PRIVATE_IP" > .env
-echo "PUB_IP⁼$PUBLIC_IP" >> .env
-
-docker network create proxy
+echo "PUB_IP=$PUBLIC_IP" >> .env
 
 make build
 make run
