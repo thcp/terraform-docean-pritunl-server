@@ -9,6 +9,14 @@ curl -L "https://github.com/thcp/pritunl-compose/archive/${LATEST_RELEASE}.tar.g
 
 # Install
 cd pritunl-compose*
+
+PUBLIC_IP=$(ip addr show eth0 | grep "inet\b" | awk '{print $2}' | cut -f1 -d'/' | head -1)
+PRIVATE_IP=$(ip addr show eth1 | grep "inet\b" | awk '{print $2}' | cut -f1 -d'/')
+
+echo "PRIV_IP=$PRIVATE_IP" > .env
+echo "PUB_IP⁼$PUBLIC_IP" >> .env
+
 docker network create proxy
+
 make build
 make run
