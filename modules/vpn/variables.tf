@@ -8,3 +8,4 @@ variable "region" {}
 
 variable "size" {}
 variable "ssh_fingerprint" {}
+variable "private_networking" {}
