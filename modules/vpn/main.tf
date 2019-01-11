@@ -8,12 +8,12 @@ locals {
 }
 
 resource "digitalocean_droplet" "vpn" {
-    image   = "${var.image}"
-    name    = "${local.env}-${var.name}-${var.image}-${var.size}"
-    region  = "${var.region}"
-    size    = "${var.size}"
-    ssh_keys = ["${var.ssh_fingerprint}"]  
-
+    image               = "${var.image}"
+    name                = "${local.env}-${var.name}-${var.image}-${var.size}"
+    region              = "${var.region}"
+    size                = "${var.size}"
+    ssh_keys            = ["${var.ssh_fingerprint}"]  
+    private_networking  = "${var.private_networking}"
 
     provisioner "file" {
         source      = "modules/vpn/scripts"
@@ -25,4 +25,43 @@ resource "digitalocean_droplet" "vpn" {
         "/tmp/scripts/setup.sh",
       ]
     }    
+}
+
+resource "digitalocean_firewall" "vpn" {
+    name = "${digitalocean_droplet.vpn.name}-firewall"
+    droplet_ids = ["${digitalocean_droplet.vpn.id}"]
+
+    inbound_rule = [
+        {
+            protocol = "tcp"
+            port_range = "22"
+        },
+        {
+            protocol = "tcp"
+            port_range = "80"
+        },
+        {
+            protocol = "tcp"
+            port_range = "443"
+        },
+        {
+            protocol = "udp"
+            port_range = "1194"
+        }        
+    ]
+
+    outbound_rule = [
+        {
+            protocol = "tcp"
+            port_range = "53"
+        },
+        {
+            protocol = "udp"
+            port_range = "53"
+        },
+        {
+            protocol = "udp"
+            port_range = "1194"
+        }  
+    ]
 }
