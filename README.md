@@ -5,7 +5,7 @@ Terraform script to provision CentOS 7 Droplet on digital Ocean and install Prit
 # Usage
 
 
-Update `main.tf` vars with your settings relevant details can be found here:
+Update `config.auto.tfvars` with your settings, relevant details can be found here:
 
 ### Size
 - https://developers.digitalocean.com/documentation/changelog/api-v2/new-size-slugs-for-droplet-plan-changes/
@@ -17,17 +17,17 @@ Update `main.tf` vars with your settings relevant details can be found here:
 - https://cloud.digitalocean.com/account/security
 
 
-## Credential file
-copy `secret.tvars.sample` to `secret.tvars` and add your API Token/ssh fingerprint
+### Credential file
+copy `secret.tvars.sample` to `secret.auto.tvars` and add your API Token/ssh fingerprint
 
-## Define your workspace
+### Define your workspace
 ```terraform workspace new dev/prod
 terraform workspace new <env>
 terraform get
 ```
-## Plan and apply
+### Plan and apply
 ```
-terraform plan -var-file="secrets.tfvars" -var-file="config.tfvars"
-terraform apply -var-file="secrets.tfvars" -var-file="config.tfvars"
+terraform plan
+terraform apply
 ```
 
